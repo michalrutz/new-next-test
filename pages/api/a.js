@@ -8,7 +8,7 @@ export default async (req, res) => {
   if (!("authorization" in req.headers)) {
     return res.status(401).json({ message: "No authorization token" });
   }
-  console.log("authorization", req.headers.authorization);
+  // console.log("authorization", req.headers.authorization);
   try {
     const { userId } = jwt.verify(
       req.headers.authorization,
