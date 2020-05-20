@@ -4,8 +4,8 @@ import fetch from "node-fetch";
 import { parseCookies } from "nookies";
 import chalk from "chalk";
 //my
-import redirectUser from "../utilis/redirect";
-import baseUrl from "../utilis/baseUrl";
+import redirectUser from "../u/redirect";
+import baseUrl from "../u/baseUrl";
 
 export function isAuthorized(
   user = { role: "user" },
@@ -47,15 +47,15 @@ class MyApp extends App {
     } else {
       // LOGGED
       try {
-          console.log("LOGGED")
-        const url = `${baseUrl}/api/account`;
+        console.log("LOGGED");
+        const url = `${baseUrl}/api/a`;
         const res = await fetch(url, {
           method: "GET",
           headers: { Authorization: token },
         });
-        const data = await res.json()
-        const {user} = data;
-        //AUTHORIZED
+        const data = await res.json();
+        const { user } = data;
+        // AUTHORIZED
         const restrictedRoutes = ["/addProduct"];
         const authorized = isAuthorized(
           user,
@@ -80,8 +80,8 @@ class MyApp extends App {
     const { Component, pageProps } = this.props;
     return (
       <div>
-      {pageProps.user.name}
-         <Component {...pageProps} />{" "}
+        {pageProps.user && pageProps.user.name}
+        <Component {...pageProps} />{" "}
       </div>
     );
   }
