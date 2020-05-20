@@ -1,6 +1,6 @@
 import App from "next/app";
 // import Layout from "../components/_App/Layout";
-import axios from "axios";
+import fetch from "node-fetch";
 import { parseCookies } from "nookies";
 import chalk from "chalk";
 //my
@@ -47,11 +47,14 @@ class MyApp extends App {
     } else {
       // LOGGED
       try {
+          console.log("LOGGED")
         const url = `${baseUrl}/api/account`;
-        const res = await axios.get(url, {
+        const res = await fetch(url, {
+          method: "GET",
           headers: { Authorization: token },
         });
-        const user = res.data;
+        const data = await res.json()
+        const {user} = data;
         //AUTHORIZED
         const restrictedRoutes = ["/addProduct"];
         const authorized = isAuthorized(
@@ -63,7 +66,6 @@ class MyApp extends App {
         if (!authorized) {
           redirectUser(ctx, "/");
         }
-
         pageProps.user = user;
       } catch (error) {
         console.error("Error getting current user", error);
@@ -78,7 +80,8 @@ class MyApp extends App {
     const { Component, pageProps } = this.props;
     return (
       <div>
-        {pageProps.user.name} <Component {...pageProps} />{" "}
+      {pageProps.user.name}
+         <Component {...pageProps} />{" "}
       </div>
     );
   }
