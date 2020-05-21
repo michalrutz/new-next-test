@@ -17,6 +17,7 @@ function AddProduct() {
   const [loading, setLoading] = React.useState(false);
   const [errMsg, setErrMsg] = React.useState("");
 
+
   function handleChange(event) {
     const { name, value, files } = event.target;
     if (name === "media") {
@@ -39,7 +40,7 @@ function AddProduct() {
     fromData.append("_id", _id);
 
     const url = `${baseUrl}/api/sharp?_id=${_id}`;
-
+    // const response = await axios.post(url, payload);
     const res_sharp = await fetch(url, {
       method: "POST",
       body: fromData,
@@ -94,7 +95,6 @@ function AddProduct() {
       setSuccess(true);
     }
   }
-
   return (
     <div>
       {errMsg}

@@ -3,6 +3,8 @@ import fetch from "node-fetch";
 import Router, { useRouter } from "next/router";
 import ProduktPrev from "../components/ProductPrev";
 import baseUrl from "../u/baseUrl";
+import chalk from "chalk";
+
 
 function Home({ products }) {
   const [Products, setProducts] = React.useState(products);
@@ -64,11 +66,22 @@ function Home({ products }) {
 }
 
 Home.getInitialProps = async () => {
+  console.log(chalk.red("getInitialProps"))
+  const res2 = await fetch(
+    `${baseUrl}/api/image?_id=${"5ec5aad644a66520347139c1"}`,
+    {
+      method: "GET",
+    }
+  );
+  console.log(chalk.red(res2));
+  const d = await res2.json()
+
   const url = `${baseUrl}/api/products?val=price&order=desc`;
   const res = await fetch(url, {
     method: "GET",
   });
   const data = await res.json();
+
   return { products: data };
 
   // return response data as an object

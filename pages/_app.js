@@ -56,7 +56,7 @@ class MyApp extends App {
         const data = await res.json();
         const { user } = data;
         // AUTHORIZED
-        const restrictedRoutes = ["/addProduct"];
+        const restrictedRoutes = ["/AddProduct"];
         const authorized = isAuthorized(
           user,
           ctx.pathname,

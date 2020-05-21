@@ -1,7 +1,11 @@
 import Link from "next/link";
+import baseUrl from '../u/baseUrl'
 
 function ProduktCard({ item }) {
-  const { _id, name, price, description } = item;
+  const { _id, name, price, description, image } = item;
+  if (image) {
+    console.log(image.data);
+  }
   return (
     <>
       <div key={_id}>
@@ -9,7 +13,7 @@ function ProduktCard({ item }) {
         <p>{price}</p>
         <Link key={_id + "Link"} href={"/product?_id=" + _id}>
           <a className="link">
-            <img src={"/img/products/productImage-" + _id + ".jpeg"} />
+          <img src={"/img/products/productImage-" + _id + ".jpeg"} />
           </a>
         </Link>
       </div>

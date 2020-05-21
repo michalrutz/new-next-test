@@ -15,10 +15,10 @@ const ProductSchema = new mongoose.Schema({
   description: {
     type: String
   },
-//   mediaUrl: {
-//     type: String,
-//     // required: true
-//   }
+  image: {
+    type: Buffer,
+    data: []
+  }
 });
 
 export default mongoose.models.Product || mongoose.model("Product", ProductSchema);

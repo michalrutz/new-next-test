@@ -33,7 +33,7 @@ const upload = multer();
 const handlePostRequest = async (req, res) => {
   try {
     const data = JSON.parse(req.body);
-    console.log("DATA -> ", data);
+    console.log("product DATA -> ", data);
     const product = await Product.create(data.product);
     res.status(200).json(product);
   } catch (err) {

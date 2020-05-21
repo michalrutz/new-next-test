@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
 let connection = {};
+import multerGridfsStorage from "multer-gridfs-storage";
+import gridfsStream from "gridfs-stream";
+import override from "method-override";
 
 async function connectDb() {
   if (connection.isConnected) {
@@ -9,7 +12,10 @@ async function connectDb() {
     return;
   }
 
-  const DB = process.env.DATABASE.replace("<password>", process.env.DATABASE_PASSWORD);
+  const DB = process.env.DATABASE.replace(
+    "<password>",
+    process.env.DATABASE_PASSWORD
+  );
 
   // Use new database connection
   const db = await mongoose.connect(DB, {
@@ -17,6 +23,12 @@ async function connectDb() {
     useFindAndModify: false,
     useNewUrlParser: true,
     useUnifiedTopology: true,
+  });
+  
+  let gfs;
+  db.once("open", () => {
+    gfs = gridfsStream(db.db, mongoose.mongo);
+    gfs.collection("uploads");
   });
   console.log("DB Connected");
   connection.isConnected = db.connections[0].readyState; //???
