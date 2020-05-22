@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import fetch from "node-fetch";
 import baseUrl from "../u/baseUrl.js";
+import axios from "axios";
 
 const INITIAL_PRODUCT = {
   name: "",
@@ -17,7 +18,6 @@ function AddProduct() {
   const [loading, setLoading] = React.useState(false);
   const [errMsg, setErrMsg] = React.useState("");
 
-
   function handleChange(event) {
     const { name, value, files } = event.target;
     if (name === "media") {
@@ -32,30 +32,25 @@ function AddProduct() {
     // }
   }
 
-  async function handleImageUpload(_id) {
-    const fromData = new FormData();
-    fromData.append("productImage", document.getElementById("media").files[0]);
+  async function handleImageUpload() {
+    const data = new FormData();
+    data.append("file", document.getElementById("media").files[0]);
+    data.append("upload_preset", "react-my-first-preset");
+    data.append("cloud_name", "dk5zucmo3");
 
-    // fromData.append("productImage", product.media);
-    fromData.append("_id", _id);
+    const res = await axios.post(process.env.CLOUDINARY_URL, data);
+    const mediaUrl = res.data.url;
+    console.log("mediaUrl", mediaUrl);
 
-    const url = `${baseUrl}/api/sharp?_id=${_id}`;
-    // const response = await axios.post(url, payload);
-    const res_sharp = await fetch(url, {
-      method: "POST",
-      body: fromData,
-    });
-    const res_sharp_json = await res_sharp.json();
-    return res_sharp_json;
+    return mediaUrl;
   }
 
-  function getFormInputList() {
-    const children = document.getElementById("product-form").children;
+  function getFormInputList(formId) {
+    const children = document.getElementById(formId).children;
     const inputList = [];
     for (let i = 0; i < children.length; i++) {
       const tag = children[i].tagName;
       if (tag === "INPUT") {
-        console.log(children[i]);
         inputList.push(children[i].id);
       }
       console.log(inputList);
@@ -67,20 +62,24 @@ function AddProduct() {
     event.preventDefault();
     setLoading(true);
     setErrMsg("");
+    //upload the img and get the link
+    const res2 = await handleImageUpload();
+    console.log(url);
+
+    //collect the data
     const url = `${baseUrl}/api/product`;
     const name = document.getElementById("name").value;
     const price = document.getElementById("price").value;
+    const mediaUrl = res2;
 
+    //CREATE Product
     const res = await fetch(url, {
       method: "POST",
-      body: JSON.stringify({ product: { name, price } }),
+      body: JSON.stringify({ product: { name, price, mediaUrl } }),
     });
     const data = await res.json();
 
-    const res2 = await handleImageUpload(data._id);
-    console.log(res2);
-
-    let inputList = getFormInputList();
+    let inputList = getFormInputList("product-form");
 
     setLoading(false);
     // setProduct(INITIAL_PRODUCT);

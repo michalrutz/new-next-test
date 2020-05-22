@@ -1,8 +1,5 @@
 import mongoose from "mongoose";
 let connection = {};
-import multerGridfsStorage from "multer-gridfs-storage";
-import gridfsStream from "gridfs-stream";
-import override from "method-override";
 
 async function connectDb() {
   if (connection.isConnected) {
@@ -25,11 +22,6 @@ async function connectDb() {
     useUnifiedTopology: true,
   });
   
-  let gfs;
-  db.once("open", () => {
-    gfs = gridfsStream(db.db, mongoose.mongo);
-    gfs.collection("uploads");
-  });
   console.log("DB Connected");
   connection.isConnected = db.connections[0].readyState; //???
 }

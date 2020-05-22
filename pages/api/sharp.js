@@ -33,15 +33,41 @@ handler.post(upload.single("productImage"), async (req, res) => {
     // const ext = file.mimetype.split("/")[1];
     const filename = `${file.fieldname}-${req.query._id}.${"jpeg"}`;
 
-    const bufferSharp = await sharp(file.buffer)
+    // profilePicture = await sharp(file.buffer)
+    //   .resize(200, 200)
+    //   .jpeg({ quality: 90 })
+    //   .toFormat("jpeg")
+    //   .toFile("test.jpeg");
+
+      profilePicture = await sharp(file.buffer)
       .resize(200, 200)
       .toFormat("jpeg")
       .jpeg({ quality: 90 })
-      .toFile(`${process.env.ROOT}/public/img/products/${filename}`, () =>
+      .toBuffer(() =>
         console.log(chalk.green("Image transformed and saved successfully!"))
       );
+
+    // .toBuffer( (err, data, info) => { buf = data  } )
+    // .toFormat('png')
+    //   `${process.env.ROOT}/public/img/products/${filename}`, () =>
+    //   console.log(chalk.green("Image transformed and saved successfully!"))
+    // );
+    // console.log(bufferSharp)
   }
-  res.status(200).json({ success: "Image saved successfully!" });
+  const buffer = img.options.input.buffer;
+
+  console.log("TRANSFORMED -> ", buffer);
+  res.status(200).json(buffer);
 });
 
 export default handler;
+
+// img = await sharp(file.buffer)
+// .resize(200, 200)
+// .toFormat("jpeg")
+// .jpeg({ quality: 90 })
+// .toBuffer(() =>
+//   console.log(chalk.green("Image transformed and saved successfully!"))
+// );
+// }
+// const buffer = img.options.input.buffer;
