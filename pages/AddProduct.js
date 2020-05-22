@@ -44,6 +44,10 @@ function AddProduct() {
       data.append("cloud_name", "dk5zucmo3");
 
       const res = await axios.post(process.env.CLOUDINARY_URL, data);
+      // const res = await fetch(process.env.CLOUDINARY_URL, data, {
+      //   method: "POST",
+      // });
+
       const mediaUrl = res.data.url;
       console.log("mediaUrl", mediaUrl);
 

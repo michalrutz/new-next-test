@@ -39,7 +39,6 @@ function Login() {
         body: JSON.stringify({ ...user }),
       });
       const data = await res.json();
-      // const res = await axios.post(url, { ...user });
       if (data) {
         if (data.errorMsg) {
           setError(data.errorMsg);
