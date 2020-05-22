@@ -4,7 +4,6 @@ import cookie from "js-cookie";
 //my
 import baseUrl from "../u/baseUrl";
 
-
 function Product(props) {
   console.log("PRODUCT PROPS",props);
   const { name, price, description, mediaUrl, _id } = props.product;
