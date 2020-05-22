@@ -9,10 +9,9 @@ function ProduktCard({ item }) {
       <div key={_id}>
         <p>{name}</p>
         <p>{price}</p>
-        <Link key={_id + "Link"} href={"/product?_id=" + _id}>
+        <Link key={_id + "Link"} href={"Product?_id=" + _id}>
           <a className="link">
           <img src={ mediaUrl } />
-
           </a>
         </Link>
       </div>
