@@ -3,6 +3,8 @@ import fetch from "node-fetch";
 import baseUrl from "../u/baseUrl.js";
 import axios from "axios";
 
+import childrenTagList from "../u/childrenTagList";
+
 const INITIAL_PRODUCT = {
   name: "",
   price: "",
@@ -33,16 +35,21 @@ function AddProduct() {
   }
 
   async function handleImageUpload() {
-    const data = new FormData();
-    data.append("file", document.getElementById("media").files[0]);
-    data.append("upload_preset", "react-my-first-preset");
-    data.append("cloud_name", "dk5zucmo3");
+    if (!document.getElementById("media").files[0]) {
+      setErrMsg("please upload an image");
+    } else {
+      const data = new FormData();
+      data.append("file", document.getElementById("media").files[0]);
+      data.append("upload_preset", "square_200px"); //face
+      data.append("cloud_name", "dk5zucmo3");
 
-    const res = await axios.post(process.env.CLOUDINARY_URL, data);
-    const mediaUrl = res.data.url;
-    console.log("mediaUrl", mediaUrl);
+      const res = await axios.post(process.env.CLOUDINARY_URL, data);
+      const mediaUrl = res.data.url;
+      console.log("mediaUrl", mediaUrl);
 
-    return mediaUrl;
+      return mediaUrl;
+    }
+    return null;
   }
 
   function getFormInputList(formId) {
@@ -53,7 +60,6 @@ function AddProduct() {
       if (tag === "INPUT") {
         inputList.push(children[i].id);
       }
-      console.log(inputList);
     }
     return inputList;
   }
@@ -63,37 +69,45 @@ function AddProduct() {
     setLoading(true);
     setErrMsg("");
     //upload the img and get the link
-    const res2 = await handleImageUpload();
-    console.log(url);
 
     //collect the data
-    const url = `${baseUrl}/api/product`;
-    const name = document.getElementById("name").value;
-    const price = document.getElementById("price").value;
-    const mediaUrl = res2;
-
-    //CREATE Product
-    const res = await fetch(url, {
-      method: "POST",
-      body: JSON.stringify({ product: { name, price, mediaUrl } }),
-    });
-    const data = await res.json();
-
-    let inputList = getFormInputList("product-form");
-
-    setLoading(false);
-    // setProduct(INITIAL_PRODUCT);
-    if (data.hasOwnProperty("errorMsg")) {
-      setErrMsg(data.errorMsg);
+    let url = `${baseUrl}/api/product`;
+    let name = document.getElementById("name").value;
+    let nameSimple = name.toLowerCase();
+    let price = document.getElementById("price").value;
+    if (!name || !price) {
+      console.log("ERROR");
+      setErrMsg("all fields are required");
+      setLoading(false);
     } else {
-      console.log("SUCCESS");
-      // document.getElementById("product-form").reset();
-      inputList.forEach((id) => (document.getElementById(id).value = null));
+      let mediaUrl = res2;
+      const res2 = await handleImageUpload();
+      //CREATE Product
+      const res = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify({
+          product: { name, nameSimple, price, mediaUrl },
+        }),
+      });
+      const data = await res.json();
+      setLoading(false);
+      // setProduct(INITIAL_PRODUCT);
+      if (data.hasOwnProperty("errorMsg")) {
+        setErrMsg(data.errorMsg);
+      } else {
+        console.log("SUCCESS");
+        //RESET FORM
+        let inputList = childrenTagList("product-form", "INPUT");
+        inputList.forEach(
+          (el) => (document.getElementById(el.id).value = null)
+        );
 
-      setMediaPreview("");
-      setSuccess(true);
+        setMediaPreview("");
+        setSuccess(true);
+      }
     }
   }
+
   return (
     <div>
       {errMsg}

@@ -9,50 +9,42 @@ function Home({ products }) {
   const [Products, setProducts] = React.useState(products);
   const [Loading, setLoading] = React.useState(false);
   const [Disable, setDisable] = React.useState(false);
-  const [Disable2, setDis2] = React.useState(false);
+  const [Order, setOrder] = React.useState("desc");
+  const [Filter, setFilter] = React.useState("");
 
-  let order = "desc";
-  let val = "price";
 
-  const sortProducts = async (query) => {
+  const getSortedProducts = async (query) => {
     setLoading(true);
-    if (Object.keys(query)[0] === "v") {
-      setDisable(!Disable);
-      console.log(Object.keys(query)[0]);
-      val = query.v;
-    } else {
-      setDis2(!Disable2);
-      order = query;
-    }
-    const data = await getFilteredPro();
+    setDisable(!Disable);
+    setOrder(query);
+    const url = `${baseUrl}/api/products?val=price&order=${query}&filter=${Filter}`;
+    const res = await fetch(url, { method: "GET" });
+    const data = await res.json();
     setProducts(data);
     setLoading(false);
+
+    return data;
   };
 
-  const getFilteredPro = async () => {
-    const url = `${baseUrl}/api/products?val=${val}&order=${order}`;
+  const handleChange = async (e) => {
+    const val = e.target.value.toLowerCase();
+    setFilter(val)
+    const url = `${baseUrl}/api/products?val=price&order=${Order}&filter=${val}`;
     console.log(url);
     const res = await fetch(url, { method: "GET" });
-    return await res.json();
+    const data = await res.json();
+    setProducts(data);
   };
 
   return (
     <>
       <div>
-        sort by
-        <button disabled={Disable} onClick={() => sortProducts({ v: "name" })}>
-          name
-        </button>
-        <button
-          disabled={!Disable}
-          onClick={() => sortProducts({ v: "price" })}
-        >
-          price
-        </button>
-        <button disabled={Disable2} onClick={() => sortProducts("asc")}>
+        <input id="filter" type="text" onChange={(e) => handleChange(e)} />
+        sort by price
+        <button disabled={Disable} onClick={() => getSortedProducts("asc")}>
           ascending
         </button>
-        <button disabled={!Disable2} onClick={() => sortProducts("desc")}>
+        <button disabled={!Disable} onClick={() => getSortedProducts("desc")}>
           descending
         </button>
         {Loading && "loading"}
