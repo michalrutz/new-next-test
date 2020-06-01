@@ -1,5 +1,5 @@
 import App from "next/app";
-// import Layout from "../components/_App/Layout";
+import Layout from "../components/_App/Layout";
 import fetch from "node-fetch";
 import { parseCookies } from "nookies";
 import chalk from "chalk";
@@ -79,10 +79,9 @@ class MyApp extends App {
     // send the pageProps as props
     const { Component, pageProps } = this.props;
     return (
-      <div>
-        {pageProps.user && pageProps.user.name}
+      <Layout {...pageProps}>
         <Component {...pageProps} />{" "}
-      </div>
+      </Layout>
     );
   }
 }

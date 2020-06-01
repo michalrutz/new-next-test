@@ -6,6 +6,8 @@ import fetch from "node-fetch";
 
 import baseUrl from "../u/baseUrl";
 
+import "../public/static/form.scss";
+
 const INITIAL_USER = {
   email: "",
   password: "",
@@ -58,23 +60,28 @@ function Login() {
     <>
       {loading ? "loading" : ""}
       {error}
-      <form>
-        <input
-          name="email"
-          type="email"
-          label="email"
-          placeholder="email"
-          onChange={handleChange}
-        />
-        <input
-          name="password"
-          type="password"
-          label="password"
-          placeholder="password"
-          onChange={handleChange}
-        />
-        <button onClick={handleSubmit}>submit</button>
-      </form>
+      <div className="form_container">
+        <form className="form">
+          <h1>Login</h1>
+          <input
+            name="email"
+            type="email"
+            label="email"
+            placeholder="email"
+            onChange={handleChange}
+          />
+          <input
+            name="password"
+            type="password"
+            label="password"
+            placeholder="password"
+            onChange={handleChange}
+          />
+          <button id="submit" onClick={handleSubmit}>
+            login
+          </button>
+        </form>
+      </div>
     </>
   );
 }

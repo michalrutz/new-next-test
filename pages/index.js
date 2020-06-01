@@ -12,7 +12,6 @@ function Home({ products }) {
   const [Order, setOrder] = React.useState("desc");
   const [Filter, setFilter] = React.useState("");
 
-
   const getSortedProducts = async (query) => {
     setLoading(true);
     setDisable(!Disable);
@@ -28,7 +27,7 @@ function Home({ products }) {
 
   const handleChange = async (e) => {
     const val = e.target.value.toLowerCase();
-    setFilter(val)
+    setFilter(val);
     const url = `${baseUrl}/api/products?val=price&order=${Order}&filter=${val}`;
     console.log(url);
     const res = await fetch(url, { method: "GET" });
@@ -38,19 +37,36 @@ function Home({ products }) {
 
   return (
     <>
-      <div>
-        <input id="filter" type="text" onChange={(e) => handleChange(e)} />
-        sort by price
-        <button disabled={Disable} onClick={() => getSortedProducts("asc")}>
-          ascending
-        </button>
-        <button disabled={!Disable} onClick={() => getSortedProducts("desc")}>
-          descending
-        </button>
-        {Loading && "loading"}
-        {Products.map((item) => (
-          <ProduktPrev key={item._id} item={item} />
-        ))}
+      <div className="core">
+        <div className="display_filter">
+          <input
+            id="filter"
+            type="text"
+            placeholder="search"
+            onChange={(e) => handleChange(e)}
+          />
+          <button
+            className="bttn underline"
+            disabled={Disable}
+            onClick={() => getSortedProducts("asc")}
+          >
+            ascending
+          </button>
+
+          <button
+            className="bttn underline"
+            disabled={!Disable}
+            onClick={() => getSortedProducts("desc")}
+          >
+            descending
+          </button>
+          {Loading && <div className="message">loading</div>}
+        </div>
+        <div className="display_products">
+          {Products.map((item) => (
+            <ProduktPrev key={item._id} item={item} />
+          ))}
+        </div>
       </div>
     </>
   );

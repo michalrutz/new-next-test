@@ -6,6 +6,8 @@ import baseUrl from "../u/baseUrl";
 import cookie from "js-cookie";
 import Router from "next/router";
 
+import "../public/static/form.scss";
+
 const INITIAL_USER = {
   name: "Tom",
   email: "tom@gmail.com",
@@ -37,7 +39,7 @@ function Signup() {
     console.log(user);
     const url = `${baseUrl}/api/signup`;
 
-    const res = await fetch( url, {
+    const res = await fetch(url, {
       method: "POST",
       body: JSON.stringify({ ...user }),
     });
@@ -60,30 +62,35 @@ function Signup() {
     <>
       {loading ? "loading" : ""}
       {error}
-      <form>
-        <input
-          name="name"
-          type="text"
-          label="name"
-          placeholder="name"
-          onChange={handleChange}
-        />
-        <input
-          name="email"
-          type="email"
-          label="email"
-          placeholder="email"
-          onChange={handleChange}
-        />
-        <input
-          name="password"
-          type="password"
-          label="password"
-          placeholder="password"
-          onChange={handleChange}
-        />
-        <button onClick={handleSubmit}>submit</button>
-      </form>
+      <div className="form_container">
+        <form className="form">
+          <h1>Sign Up</h1>
+          <input
+            name="name"
+            type="text"
+            label="name"
+            placeholder="name"
+            onChange={handleChange}
+          />
+          <input
+            name="email"
+            type="email"
+            label="email"
+            placeholder="email"
+            onChange={handleChange}
+          />
+          <input
+            name="password"
+            type="password"
+            label="password"
+            placeholder="password"
+            onChange={handleChange}
+          />
+          <button id="submit" onClick={handleSubmit}>
+            sign up
+          </button>
+        </form>
+      </div>
     </>
   );
 }

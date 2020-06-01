@@ -56,17 +56,7 @@ function AddProduct() {
     return null;
   }
 
-  function getFormInputList(formId) {
-    const children = document.getElementById(formId).children;
-    const inputList = [];
-    for (let i = 0; i < children.length; i++) {
-      const tag = children[i].tagName;
-      if (tag === "INPUT") {
-        inputList.push(children[i].id);
-      }
-    }
-    return inputList;
-  }
+
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -79,13 +69,14 @@ function AddProduct() {
     let name = document.getElementById("name").value;
     let nameSimple = name.toLowerCase();
     let price = document.getElementById("price").value;
+
     if (!name || !price) {
       console.log("ERROR");
       setErrMsg("all fields are required");
       setLoading(false);
     } else {
-      let mediaUrl = res2;
       const res2 = await handleImageUpload();
+      let mediaUrl = res2;
       //CREATE Product
       const res = await fetch(url, {
         method: "POST",
@@ -143,7 +134,7 @@ function AddProduct() {
           content="Select Image"
           onChange={handleChange}
         />
-        <img src={mediaPreview}></img>
+        <img height="300" src={mediaPreview}></img>
         <button type="submit" disabled={loading} onClick={handleSubmit}>
           Submit
         </button>

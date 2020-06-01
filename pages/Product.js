@@ -5,7 +5,8 @@ import cookie from "js-cookie";
 import baseUrl from "../u/baseUrl";
 
 function Product(props) {
-  console.log("PRODUCT PROPS",props);
+  console.log("PRODUCT PROPS", props);
+  const [loading, setLoading] = React.useState(false);
   const { name, price, description, mediaUrl, _id } = props.product;
   const [chosenProduct, setchosenProduct] = React.useState({
     quantity: 1,
@@ -28,14 +29,15 @@ function Product(props) {
 
   const addToCart = async (event) => {
     event.preventDefault();
+    setLoading(true);
     const quantity = document.getElementById("quantity").value;
-    console.log("quantity "+quantity);
+    console.log("quantity " + quantity);
     // product ID
     const token = cookie.get("token");
-    console.log(token)
+    console.log(token);
     const url = baseUrl + "/api/cart";
 
-    const res = await fetch( url, {
+    const res = await fetch(url, {
       method: "PUT",
       body: JSON.stringify({ product: { ...chosenProduct, productId: _id } }),
       headers: { Authorization: token },
@@ -43,37 +45,42 @@ function Product(props) {
     // console.log(res.json())
     const data = await res.json();
     console.log(data);
+    setLoading(false);
+
     // router.push("/");
   };
 
   return (
     <>
-      <h1>{name}</h1>
-      <p>PRICE:{price}</p>
-      <p>{description}</p>
-      <img src={mediaUrl} />
-      {props.user && props.user.role === "user" && (
-        <>
-          <form>
-            <input
-              id="quantity"
-              type="number"
-              name="quantity"
-              label="quantity"
-              value={chosenProduct.quantity}
-              min="1"
-              onChange={handleChange}
-            />
-          </form>
-          <button onClick={addToCart}>add to cart</button>
-        </>
-      )}
-      {props.user && props.user.role === "admin" && (
-        <>
-          <p>{_id}</p>
-          <button onClick={delelteProduct}>X</button>{" "}
-        </>
-      )}
+      <div class="product-page">
+        <h1>{name}</h1>
+        <p>PRICE:{price}</p>
+        <p>{description}</p>
+        <img src={mediaUrl} />
+
+        {props.user && props.user.role === "user" && (
+          <>
+            <form>
+              <input
+                id="quantity"
+                type="number"
+                name="quantity"
+                label="quantity"
+                value={chosenProduct.quantity}
+                min="1"
+                onChange={handleChange}
+              />
+            </form>
+            <button onClick={addToCart}>add to cart</button>
+          </>
+        )}
+        {props.user && props.user.role === "admin" && (
+          <>
+            <p>{_id}</p>
+            <button onClick={delelteProduct}>X</button>{" "}
+          </>
+        )}
+      </div>
     </>
   );
 }
