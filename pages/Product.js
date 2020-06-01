@@ -1,4 +1,6 @@
+import "../public/static/product.scss";
 const { useRouter } = require("next/router");
+import Link from "next/link";
 import fetch from "node-fetch";
 import cookie from "js-cookie";
 //my
@@ -52,34 +54,46 @@ function Product(props) {
 
   return (
     <>
-      <div class="product-page">
-        <h1>{name}</h1>
-        <p>PRICE:{price}</p>
-        <p>{description}</p>
-        <img src={mediaUrl} />
+      <div className="product-page">
+        <div className="product-image">
+          <img src={mediaUrl} />
+        </div>
+        <div className="product-info">
+          <h2>{name}</h2>
+          <p>{price}€</p>
+          {props.user && props.user.role === "user" && (
+            <>
+              <form>
+                <input
+                  id="quantity"
+                  type="number"
+                  name="quantity"
+                  label="quantity"
+                  value={chosenProduct.quantity}
+                  min="1"
+                  onChange={handleChange}
+                />
+              </form>
 
-        {props.user && props.user.role === "user" && (
-          <>
-            <form>
-              <input
-                id="quantity"
-                type="number"
-                name="quantity"
-                label="quantity"
-                value={chosenProduct.quantity}
-                min="1"
-                onChange={handleChange}
-              />
-            </form>
-            <button onClick={addToCart}>add to cart</button>
-          </>
-        )}
-        {props.user && props.user.role === "admin" && (
-          <>
-            <p>{_id}</p>
-            <button onClick={delelteProduct}>X</button>{" "}
-          </>
-        )}
+              <button onClick={addToCart}>add to cart</button>
+            </>
+          )}
+          {!props.user && (
+            <>
+              <Link href={`/login`}>
+                <button>login to buy</button>
+              </Link>
+            </>
+          )}
+          <p>description:{description}</p>
+
+          {props.user && props.user.role === "admin" && (
+            <>
+              <p>{_id}</p>
+              <button onClick={delelteProduct}>X</button>{" "}
+            </>
+          )}
+        </div>
       </div>
     </>
   );

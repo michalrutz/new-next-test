@@ -1,12 +1,11 @@
 import React from "react";
 import Router from "next/router";
+import "../public/static/form.scss";
 
 import cookie from "js-cookie";
 import fetch from "node-fetch";
 
 import baseUrl from "../u/baseUrl";
-
-import "../public/static/form.scss";
 
 const INITIAL_USER = {
   email: "",

@@ -24,14 +24,14 @@ export default function Menu(props) {
         </div>
         <div className="menu container">
           <MenuLinkLogged link="" title="home" logged={true} />
-          <MenuLinkLogged link="cart" logged={logged} />
+          <MenuLinkLogged link="Cart" logged={logged} />
           <Logout logged={logged} />
-          <MenuLinkLogged link="login" logged={!logged} />
-          <MenuLinkLogged link="signup" logged={!logged} />
+          <MenuLinkLogged link="Login" logged={!logged} />
+          <MenuLinkLogged link="Signup" logged={!logged} />
 
           {props.user && props.user.role === "admin" && (
             <MenuLinkLogged
-              link="addProduct"
+              link="Create"
               title="create"
               logged={logged}
             />
