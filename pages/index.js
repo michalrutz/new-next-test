@@ -1,3 +1,6 @@
+import "../public/static/shop.scss";
+import "../public/static/cart.scss";
+
 import React, { useState, useEffect } from "react";
 import fetch from "node-fetch";
 import Router, { useRouter } from "next/router";
@@ -45,21 +48,23 @@ function Home({ products }) {
             placeholder="search"
             onChange={(e) => handleChange(e)}
           />
-          <button
-            className="bttn underline"
-            disabled={Disable}
-            onClick={() => getSortedProducts("asc")}
-          >
-            ascending
-          </button>
+          <div>
+            <button
+              className="bttn underline"
+              disabled={Disable}
+              onClick={() => getSortedProducts("asc")}
+            >
+              ascending
+            </button>
+            <button
+              className="bttn underline"
+              disabled={!Disable}
+              onClick={() => getSortedProducts("desc")}
+            >
+              descending
+            </button>
+          </div>
 
-          <button
-            className="bttn underline"
-            disabled={!Disable}
-            onClick={() => getSortedProducts("desc")}
-          >
-            descending
-          </button>
           {Loading && <div className="message">loading</div>}
         </div>
         <div className="display_products">

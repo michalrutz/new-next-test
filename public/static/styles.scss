@@ -28,6 +28,7 @@ body {
   font-size: 1.6rem;
   font-family: "Abel", sans-serif;
   box-sizing: border-box;
+  margin: 0 1%;
 }
 
 a {
@@ -43,7 +44,7 @@ li {
 }
 /* MENU */
 header {
-  max-width: 120rem;
+  max-width: 130rem;
   margin: auto;
 }
 
@@ -68,7 +69,7 @@ header nav {
 }
 .menu button {
   background: transparent;
-  border:none;
+  border: none;
 
   display: flex;
   justify-content: center;
@@ -96,7 +97,7 @@ header nav {
   text-shadow: 1px 1px 1px white;
 }
 .menu button:hover a {
-  color: #E14A48;
+  color: #e14a48;
 }
 .isActive {
   color: rgba(0, 0, 0, 0.3);
@@ -181,42 +182,7 @@ header nav {
   align-content: space-evenly;
 }
 
-.cart {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
-  border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  margin-bottom: 2rem;
-}
 
-.cart_des {
-  width: 100%;
-  margin-top: -0.5rem;
-  padding-left: 1.6rem;
-}
-
-.cart p {
-  text-justify: center;
-}
-
-.cart_link {
-  height: 200;
-}
-
-.cart_img {
-  width: 25rem;
-  height: 25rem;
-  object-fit: cover;
-  margin: 0;
-  padding: 0;
-}
 
 /* FORM */
 *:focus {
@@ -251,4 +217,10 @@ input:focus {
   text-transform: uppercase;
   color: white;
   padding: 0.2rem 0.6rem;
+}
+
+@media screen and (max-width: 568px) {
+  body {
+    font-size: 1.2rem;
+  }
 }

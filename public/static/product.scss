@@ -1,31 +1,109 @@
 .product-page {
-    background-color: rgba(255, 255, 255, 0.5);
-    margin: auto;
-    max-width: 100rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin: auto;
+  max-width: 110rem;
 
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: row;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: nowrap;
 
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
+}
+.product-image {
+  display: flex;
+  width: 60rem;
 }
 
-img {
-    max-height: 100%;
-    max-width: 100%;
+.product-image img {
+  max-height: 100%;
+  max-width: 100%;
+  flex-shrink: 1;
 }
 
-.product-page .product-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    // margin: auto;
-    padding: 5%;
+.product-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  // margin: auto;
+  padding: 5%;
+  // max-width: 100%;
+  flex-shrink: 5;
 }
 
 .product-info > * {
-    margin: 1rem;
+  margin: 1rem;
+}
+
+.product-info form {
+  background-color: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+.product-info form input {
+  width: 4rem;
+}
+
+.product-info button {
+  margin-top: 1.5rem;
+  font-family: "Varela Round", sans-serif;
+  color: white;
+  border: 1px solid white;
+  border-radius: 1rem;
+  background-color: transparent;
+  padding: 0.9rem 1.5rem 1rem 1.5rem;
+  // width: 8rem;
+  transition: all 0.5s ease;
+}
+
+.product-info button:hover {
+  color: rgba(98, 132, 255, 1);
+  background-color: white;
+  transform: translateY(-0.5rem);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
+}
+.product-info button:active {
+  border-radius: 0.6rem;
+  color: rgba(0, 0, 0, 0.4);
+  background-color: white;
+  transform: translateY(-0.2rem);
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.6);
+}
+
+@media screen and (max-width: 1024px) {
+  .product-page {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 60rem;
+  }
+  .product-info {
+    padding: 1%;
+  }
+
+  .product-image {
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+  }
+  image {
+    align-self: center;
+    max-width: 60rem;
+  }
+}
+
+@media screen and (orientation: landscape) and (max-width: 1024px) and (min-width: 800px) {
+  .product-page {
+    flex-direction: row;
+    justify-content: flex-start;
+    max-width: 100rem;
+  }
+  .product-image {
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 2;
+  }
 }

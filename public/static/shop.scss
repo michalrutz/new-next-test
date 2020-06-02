@@ -1,0 +1,16 @@
+@media screen and (max-width: 414px) {
+    .display_filter{
+        flex-direction: column;
+    }
+    .display_filter button{
+        padding: 0.5rem;
+        margin-top: 0.8rem;
+    }
+
+    .display_products {
+        margin-top: 5%;
+        display: flex;
+        flex-wrap: wrap;
+      }
+}
+
