@@ -80,7 +80,7 @@ function Product(props) {
           )}
           {!props.user && (
             <>
-              <Link href={`/login`}>
+              <Link href={`/Login`}>
                 <button>login to buy</button>
               </Link>
             </>
