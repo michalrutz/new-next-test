@@ -1,6 +1,22 @@
+import "../../public/static/header.scss";
 import { useRouter } from "next/router";
 import MenuLinkLogged from "./MenuLinkLogged";
 import Logout from "./Logout";
+
+function toggleVisibility(id, c) {
+  var x = document.getElementById(id);
+  if (x.style.display === "none") {
+    x.style.display = "flex";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function toggleStyle(id, c) {
+  var x = document.getElementById(id);
+  x.classList.toggle(c);
+  console.log(x);
+}
 
 export default function Menu(props) {
   const { pathname } = useRouter();
@@ -18,11 +34,27 @@ export default function Menu(props) {
 
   return (
     <>
+      <button
+        className="container con-hamburger"
+        id="hamburger"
+        onClick={() => {
+          toggleVisibility("menu-pop");
+          toggleStyle("hamburger", "hamburger-x");
+        }}
+      >
+        <div id="bars-back"></div>
+        <div className="bar1"></div>
+        <div className="bar2"></div>
+        <div className="bar3"></div>
+      </button>
       <nav>
-        <div className="container">
-          <div className="box logo" id="shop"><p>Shop Logo</p></div>
+        <div className="container logo-con">
+          <div className="box logo" id="logo">
+            <p>Shop Logo</p>
+          </div>
         </div>
-        <div className="menu container">
+
+        <div className="container menu">
           <MenuLinkLogged link="" title="home" logged={true} />
           <MenuLinkLogged link="Cart" logged={logged} />
           <Logout logged={logged} />
@@ -30,14 +62,25 @@ export default function Menu(props) {
           <MenuLinkLogged link="Signup" logged={!logged} />
 
           {props.user && props.user.role === "admin" && (
-            <MenuLinkLogged
-              link="Create"
-              title="create"
-              logged={logged}
-            />
+            <MenuLinkLogged link="Create" title="create" logged={logged} />
           )}
         </div>
       </nav>
+      <div
+        id="menu-pop"
+        className="hidden-menu menu"
+        style={{ display: "none" }}
+      >
+        <MenuLinkLogged link="" title="home" logged={true} />
+        <MenuLinkLogged link="Cart" logged={logged} />
+        <Logout logged={logged} />
+        <MenuLinkLogged link="Login" logged={!logged} />
+        <MenuLinkLogged link="Signup" logged={!logged} />
+
+        {props.user && props.user.role === "admin" && (
+          <MenuLinkLogged link="Create" title="create" logged={logged} />
+        )}
+      </div>
     </>
   );
 }

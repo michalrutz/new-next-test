@@ -34,8 +34,6 @@ function Layout(props) {
       <header>
         <Menu {...props} />
       </header>
-
-      {props.user ? <p>Hello {props.user.name}!</p> : " "}
       {props.children}
     </>
   );

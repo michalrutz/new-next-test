@@ -9,9 +9,9 @@ import Router from "next/router";
 import "../public/static/form.scss";
 
 const INITIAL_USER = {
-  name: "Tom",
-  email: "tom@gmail.com",
-  password: "1234",
+  name: "",
+  email: "",
+  password: "",
 };
 
 function Signup() {

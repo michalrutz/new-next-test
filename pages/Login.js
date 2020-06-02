@@ -6,6 +6,7 @@ import cookie from "js-cookie";
 import fetch from "node-fetch";
 
 import baseUrl from "../u/baseUrl";
+import AppError from "../u/AppError";
 
 const INITIAL_USER = {
   email: "",
@@ -34,12 +35,23 @@ function Login() {
     try {
       setLoading(true);
       setError("");
+
+      if (!user.email) {
+        setError("email is required");
+        throw AppError("email is required");
+      }
+      if (!user.password) {
+        setError("email is password");
+        throw AppError("email is password");
+      }
+
       const url = `${baseUrl}/api/login`;
       const res = await fetch(url, {
         method: "POST",
         body: JSON.stringify({ ...user }),
       });
       const data = await res.json();
+      console.log(data);
       if (data) {
         if (data.errorMsg) {
           setError(data.errorMsg);
@@ -49,7 +61,7 @@ function Login() {
         }
       }
     } catch (error) {
-      console.log(error);
+      console.log({ error });
     } finally {
       setLoading(false);
     }

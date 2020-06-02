@@ -17,7 +17,7 @@ export default async (req, res) => {
     console.log(user);
     // 2) --if not, return error
     if (!user) {
-      return res.status(404).send("No user exists with that email");
+      throw new AppError("No user exists with that email", 401);
     }
     // 3) check to see if users' password matches the one in db
     const passwordsMatch = await bcryptjs.compareSync(password, user.password);

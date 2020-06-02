@@ -1,3 +1,10 @@
+//basic reset
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
 html {
   font-size: 62.5%;
 }
@@ -27,7 +34,6 @@ body {
   min-height: 100vh;
   font-size: 1.6rem;
   font-family: "Abel", sans-serif;
-  box-sizing: border-box;
   margin: 0 1%;
 }
 
@@ -41,66 +47,6 @@ a {
 
 li {
   list-style: none;
-}
-/* MENU */
-header {
-  max-width: 130rem;
-  margin: auto;
-}
-
-header nav {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 2vh;
-  display: flex;
-  justify-content: space-between;
-  flex-grow: 1;
-}
-
-.container {
-  display: flex;
-  justify-content: space-around;
-}
-
-/* MENU */
-.menu {
-  min-width: 30%;
-}
-.menu button {
-  background: transparent;
-  border: none;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-  position: relative;
-
-  width: 9rem;
-
-  padding: 0%;
-
-  cursor: pointer;
-
-  font-family: abel;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 1.6rem;
-  text-transform: lowercase;
-
-  margin-left: 0.2rem;
-}
-.menu button:hover {
-  border-bottom: 0px solid white;
-  color: transparent;
-  text-shadow: 1px 1px 1px white;
-}
-.menu button:hover a {
-  color: #e14a48;
-}
-.isActive {
-  color: rgba(0, 0, 0, 0.3);
 }
 
 .underline:after {
@@ -221,6 +167,6 @@ input:focus {
 
 @media screen and (max-width: 568px) {
   body {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
   }
 }
