@@ -55,44 +55,53 @@ function Product(props) {
   return (
     <>
       <div className="product-page">
-        <div className="product-image">
-          <img src={mediaUrl} />
-        </div>
-        <div className="product-info">
-          <h2>{name}</h2>
-          <p>{price}€</p>
-          {props.user && props.user.role === "user" && (
-            <>
-              <form>
-                <input
-                  id="quantity"
-                  type="number"
-                  name="quantity"
-                  label="quantity"
-                  value={chosenProduct.quantity}
-                  min="1"
-                  onChange={handleChange}
-                />
-              </form>
+        <div className="product">
+          <div className="product-image">
+            <img src={mediaUrl} />
+          </div>
+          <div className="product-info">
+            <h2>{name}</h2>
+            <p>{price}€</p>
+            {props.user && props.user.role === "user" && (
+              <>
+                <form>
+                  <input
+                    id="quantity"
+                    type="number"
+                    name="quantity"
+                    label="quantity"
+                    value={chosenProduct.quantity}
+                    min="1"
+                    onChange={handleChange}
+                  />
+                </form>
 
-              <button onClick={addToCart}>add to cart</button>
-            </>
-          )}
-          {!props.user && (
-            <>
-              <Link href={`/Login`}>
-                <button>login to buy</button>
-              </Link>
-            </>
-          )}
-          <p>description:{description} There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. </p>
+                <button onClick={addToCart}>add to cart</button>
+              </>
+            )}
+            {!props.user && (
+              <>
+                <Link href={`/Login`}>
+                  <button>login to buy</button>
+                </Link>
+              </>
+            )}
+            <p>
+              description:{description} There are many variations of passages of
+              Lorem Ipsum available, but the majority have suffered alteration
+              in some form, by injected humour, or randomised words which don't
+              look even slightly believable. If you are going to use a passage
+              of Lorem Ipsum, you need to be sure there isn't anything
+              embarrassing hidden in the middle of text.{" "}
+            </p>
 
-          {props.user && props.user.role === "admin" && (
-            <>
-              <p>{_id}</p>
-              <button onClick={delelteProduct}>X</button>{" "}
-            </>
-          )}
+            {props.user && props.user.role === "admin" && (
+              <>
+                <p>{_id}</p>
+                <button onClick={delelteProduct}>X</button>{" "}
+              </>
+            )}
+          </div>
         </div>
       </div>
     </>

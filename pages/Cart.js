@@ -1,3 +1,4 @@
+import "../public/static/shopingcart.scss";
 import { parseCookies } from "nookies";
 import Router from "next/router";
 import StripeCheckout from "react-stripe-checkout";
@@ -52,40 +53,55 @@ function Cart({ user, products }) {
 
   return (
     <>
-      <h1>{user.name}'s Cart</h1>
-      <div>
-        <h2></h2>
-        {Products.map((el, i) => {
-          return (
-            <div key={"div" + i} className="product">
-              <h3 key={"name" + i}>{el.product.name}</h3>
-              <p key={"price" + i}>{el.product.price}</p>
-              <p key={"quantity" + i}>{el.quantity}</p>
-              <img src={el.product.mediaUrl} />
-              {user.role === "admin" && (
-                <button onClick={() => deleteProduct(el.product._id)}>X</button>
-              )}
+      <div className="cart-page">
+        <div className="cart-page-with-h2">
+          <div className="header">
+            <h2>Shoping Cart</h2>
+          </div>
+
+          <div className="withCheckout">
+            <div className="cart-page-list">
+              {Products.map((el, i) => {
+                return (
+                  <div key={"div" + i} className="cart-product">
+                    <div className="image-con">
+                      <img src={el.product.mediaUrl} />
+                    </div>
+                    <div className="info-con">
+                      <h3 key={"name" + i}>{el.product.name}</h3>
+                      <p key={"price" + i}>{el.product.price}</p>
+                      <p key={"quantity" + i}>{el.quantity}</p>
+                      {user.role === "admin" && (
+                        <button onClick={() => deleteProduct(el.product._id)}>
+                          X
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-          );
-        })}
-        <StripeCheckout
-          name="React Reserve"
-          amount={stripeAmount}
-          image={
-            Products.length > 0
-              ? Products[0].product.mediaUrl
-              : ""
-          }
-          currency="EUR"
-          shippingAddress={true}
-          billingAddress={true}
-          zipCode={true}
-          stripeKey="pk_test_6GCyEv03yWinorBzeSbSOQdd00QbRDOSFR"
-          token={handleCheckout}
-          triggerEvent="onClick"
-        >
-          <button disabled={Products.length === 0}>buy</button>
-        </StripeCheckout>
+
+            <div id="StripeCheckout">
+              <StripeCheckout
+                name="React Reserve"
+                amount={stripeAmount}
+                image={Products.length > 0 ? Products[0].product.mediaUrl : ""}
+                currency="EUR"
+                shippingAddress={true}
+                billingAddress={true}
+                zipCode={true}
+                stripeKey="pk_test_6GCyEv03yWinorBzeSbSOQdd00QbRDOSFR"
+                token={handleCheckout}
+                triggerEvent="onClick"
+              >
+                <button disabled={Products.length === 0}>
+                  Checkout
+                </button>
+              </StripeCheckout>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

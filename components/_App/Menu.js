@@ -34,23 +34,23 @@ export default function Menu(props) {
 
   return (
     <>
-      <button
-        className="container con-hamburger"
-        id="hamburger"
-        onClick={() => {
-          toggleVisibility("menu-pop");
-          toggleStyle("hamburger", "hamburger-x");
-        }}
-      >
-        <div id="bars-back"></div>
-        <div className="bar1"></div>
-        <div className="bar2"></div>
-        <div className="bar3"></div>
-      </button>
       <nav>
+        <button
+          className="container con-hamburger"
+          id="hamburger"
+          onClick={() => {
+            toggleVisibility("menu-pop");
+            toggleStyle("hamburger", "hamburger-x");
+          }}
+        >
+          <div id="bars-back"></div>
+          <div className="bar1"></div>
+          <div className="bar2"></div>
+          <div className="bar3"></div>
+        </button>
         <div className="container logo-con">
-          <div className="box logo" id="logo">
-            <p>Shop Logo</p>
+          <div id="logo" className="box logo" id="logo">
+            <img src="img/LOGO.svg" />
           </div>
         </div>
 
@@ -65,8 +65,7 @@ export default function Menu(props) {
             <MenuLinkLogged link="Create" title="create" logged={logged} />
           )}
         </div>
-      </nav>
-      <div
+         <div
         id="menu-pop"
         className="hidden-menu menu"
         style={{ display: "none" }}
@@ -81,6 +80,8 @@ export default function Menu(props) {
           <MenuLinkLogged link="Create" title="create" logged={logged} />
         )}
       </div>
+      </nav>
+     
     </>
   );
 }
