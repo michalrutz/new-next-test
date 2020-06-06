@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 export default function MenuLinkLogged(props) {
   const { pathname } = useRouter();
   const path = `/${props.link}`;
-  let classes = "bttn underline";
+  let classes = "bttn-menu underline";
 
   const isActive = (path) => {
     if (path === pathname) {
@@ -17,7 +17,7 @@ export default function MenuLinkLogged(props) {
     <>
       {props.logged && (
         <Link href={`/${props.link}`}>
-          <button onClick={props.fun} className={classes}>
+          <button onClick={(e)=> console.log(props.link)} className={classes}>
             {props.title || props.link}
           </button>
         </Link>

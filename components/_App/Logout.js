@@ -6,8 +6,8 @@ export default function Logout(props) {
   return (
     <>
       {props.logged && (
-        <Link href={`/Login`}>
-          <button className="bttn underline" onClick={() => cookie.remove("token")}>
+        <Link href={`/login`}>
+          <button className="bttn-menu underline" onClick={() => cookie.remove("token")}>
             logout
           </button>
         </Link>

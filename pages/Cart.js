@@ -54,25 +54,25 @@ function Cart({ user, products }) {
   return (
     <>
       <div className="cart-page">
-        <div className="cart-page-with-h2">
+        <div className="shopingcart">
           <div className="header">
             <h2>Shoping Cart</h2>
           </div>
 
           <div className="withCheckout">
-            <div className="cart-page-list">
+            <div className="shopingcart-list">
               {Products.map((el, i) => {
                 return (
-                  <div key={"div" + i} className="cart-product">
+                  <div key={"div" + i} className="shopingcart-product">
                     <div className="image-con">
                       <img src={el.product.mediaUrl} />
                     </div>
                     <div className="info-con">
-                      <h3 key={"name" + i}>{el.product.name}</h3>
+                      <p className="name" key={"name" + i}>{el.product.name}</p>
                       <p key={"price" + i}>{el.product.price}</p>
                       <p key={"quantity" + i}>{el.quantity}</p>
                       {user.role === "admin" && (
-                        <button onClick={() => deleteProduct(el.product._id)}>
+                        <button className="bttn-second" onClick={() => deleteProduct(el.product._id)}>
                           X
                         </button>
                       )}
@@ -95,8 +95,8 @@ function Cart({ user, products }) {
                 token={handleCheckout}
                 triggerEvent="onClick"
               >
-                <button disabled={Products.length === 0}>
-                  Checkout
+                <button className="bttn-second" disabled={Products.length === 0}>
+                  <p>Checkout</p>
                 </button>
               </StripeCheckout>
             </div>
@@ -108,8 +108,8 @@ function Cart({ user, products }) {
 }
 
 Cart.getInitialProps = async (ctx) => {
-  const { token } = parseCookies(ctx);
-  const url = `${baseUrl}/api/cart`;
+  // const { token } = parseCookies(ctx);
+  // const url = `${baseUrl}/api/cart`;
   const res = await axios.get(url, { headers: { Authorization: token } });
   console.log(res.data);
 

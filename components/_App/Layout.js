@@ -23,7 +23,10 @@ function Layout(props) {
           href="https://fonts.googleapis.com/css2?family=Abel&display=swap"
           rel="stylesheet"
         ></link>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"></link>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+          rel="stylesheet"
+        ></link>
         <link
           rel="stylesheet"
           type="text/scss"
@@ -32,10 +35,12 @@ function Layout(props) {
         />
         <title>ReactReserve</title>
       </Head>
-      <header>
-        <Menu {...props} />
-      </header>
-      {props.children}
+      <div>
+        <header>
+          <Menu {...props} />
+        </header>
+        <div id="core">{props.children}</div>
+      </div>
     </>
   );
 }

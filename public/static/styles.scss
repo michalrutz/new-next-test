@@ -1,3 +1,10 @@
+$color-black: #0b1e21;
+$color-white: #f5f5ef;
+$color-white2: rgb(232, 246, 241);
+$color-primary: #cceabb;
+$color-primary-dark: #b0caa1;
+$color-secondary: #fdcb9e;
+
 //basic reset
 * {
   margin: 0;
@@ -7,12 +14,13 @@
 
 html {
   font-size: 62.5%;
+  backface-visibility: hidden;
 }
 
 body {
   background-image: -webkit-linear-gradient(
     270deg,
-    rgba(98, 132, 255, 1) 0%,
+    rgb(205, 215, 251) 0%,
     rgba(255, 0, 0, 1) 100%
   );
   background-image: -moz-linear-gradient(
@@ -27,8 +35,8 @@ body {
   );
   background-image: linear-gradient(
     180deg,
-    rgba(98, 132, 255, 1) 0%,
-    rgba(255, 0, 0, 1) 100%
+    $color-white2 0%,
+    $color-white 100%
   );
   background-size: cover;
   min-height: 100vh;
@@ -40,7 +48,7 @@ body {
 a {
   list-style: none;
   text-decoration: none;
-  color: black;
+  color: $color-black;
   margin: 0;
   padding: 0;
 }
@@ -49,15 +57,13 @@ li {
   list-style: none;
 }
 
-
-
 .underline:after {
   content: "";
   display: block;
   position: absolute;
   bottom: -0%;
   left: 10%;
-  height: 0.2rem;
+  height: 0.1rem;
   width: 80%;
   background: transparent;
   transition: all 0.5s ease;
@@ -66,7 +72,7 @@ li {
   width: 90%;
   bottom: 15%;
   left: 5%;
-  background: black;
+  background: f5f5ef;
   // box-shadow: 0 0.1rem 0.5rem rgba(98, 132, 255, 1);
 }
 .underline:disabled:hover:after {
@@ -78,7 +84,7 @@ li {
 }
 
 .core {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.5);
   max-width: 120rem;
   padding: 4%;
   margin: auto;
@@ -100,16 +106,19 @@ li {
   border: none;
   position: relative;
   padding: 1.5rem;
-  border-right: 0.2rem solid rgba(255, 255, 255, 0.4);
+  border-right: 0.2rem dotted rgba($color-black, 0.3);
   background-color: transparent;
 }
 
 .display_filter button:hover {
-  color: white;
+  // color: $color-secondary;
+  text-shadow: 0 0.1rem 0.1rem $color-black;
 }
 
 .display_filter button:disabled:hover {
   color: rgba(0, 0, 0, 0.3);
+  text-shadow: none;
+
 }
 .display_filter button:disabled {
   color: rgba(0, 0, 0, 0.3);
@@ -141,6 +150,7 @@ li {
 } */
 
 input {
+  position: relative;
   margin: 0;
   padding: 0.9rem 1.5rem 1rem 1.5rem;
   border: none;
@@ -149,12 +159,13 @@ input {
   font-size: 1.8rem;
   font-family: inherit;
   color: inherit;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 1);
+  border-bottom: 0.1rem solid white;
   transition: all 0.7s ease;
 }
 
 input:focus {
-  border: 0.2rem solid white;
+  border-bottom: 0.1rem solid $color-black;
 }
 
 .message {
@@ -162,7 +173,7 @@ input:focus {
   background-color: rgba(0, 0, 0, 0.1);
   transform: translate(0, -200%);
   text-transform: uppercase;
-  color: white;
+  color: $color-white;
   padding: 0.2rem 0.6rem;
 }
 

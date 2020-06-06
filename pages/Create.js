@@ -135,7 +135,7 @@ function AddProduct() {
           onChange={handleChange}
         />
         <img height="300" src={mediaPreview}></img>
-        <button type="submit" disabled={loading} onClick={handleSubmit}>
+        <button className="bttn-second" type="submit" disabled={loading} onClick={handleSubmit}>
           Submit
         </button>
       </form>

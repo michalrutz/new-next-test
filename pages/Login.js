@@ -88,7 +88,7 @@ function Login() {
             placeholder="password"
             onChange={handleChange}
           />
-          <button id="submit" onClick={handleSubmit}>
+          <button className="bttn-second" id="submit" onClick={handleSubmit}>
             login
           </button>
         </form>
