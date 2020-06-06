@@ -41,7 +41,7 @@ class MyApp extends App {
         (el) => ctx.pathname === el
       ); // -> ctx.pathname === "/account" ||
       if (isProtectedRoute) {
-        redirectUser(ctx, "/login");
+        redirectUser(ctx, "/Login");
       }
     } else {
       // LOGGED
