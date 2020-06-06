@@ -36,10 +36,12 @@ $color-secondary: #fdcb9e;
     input {
       padding: 0.2rem 0.5rem;
       transition: all 0.5s ease;
+      margin-bottom: 0.5rem;
+      border-bottom: 0.1rem solid transparent;
 
       &:focus {
         background-color: rgba($color-primary, 0.4);
-        border-bottom: 0.2rem solid white;
+        border-bottom: 0.1rem solid black;
       }
       &:-webkit-autofill {
         border: none;
