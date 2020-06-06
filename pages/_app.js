@@ -30,9 +30,11 @@ class MyApp extends App {
     console.log(chalk.magenta(token ? "got token from cookies" : "no token"));
     let pageProps = {};
 
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx);
+    }
     // call the method getInitialProps for the Component with ctx from _app
     // save the results as props and send it to the Component
-
     if (!token) {
       console.log("no token, check if protected");
       // CHECK IF PROTECTED
@@ -40,15 +42,13 @@ class MyApp extends App {
       const isProtectedRoute = protectedRoutes.some(
         (el) => ctx.pathname === el
       ); // -> ctx.pathname === "/account" ||
+
       if (isProtectedRoute) {
         redirectUser(ctx, "/Login");
       }
     } else {
       // LOGGED
       try {
-        if (Component.getInitialProps) {
-          pageProps = await Component.getInitialProps(ctx);
-        }
         console.log("LOGGED");
         const url = `${baseUrl}/api/a`;
         const res = await fetch(url, {
@@ -58,7 +58,7 @@ class MyApp extends App {
         const data = await res.json();
         const { user } = data;
         // AUTHORIZED
-        const restrictedRoutes = ["/AddProduct"];
+        const restrictedRoutes = ["/Create"];
         const authorized = isAuthorized(
           user,
           ctx.pathname,
@@ -72,9 +72,6 @@ class MyApp extends App {
       } catch (error) {
         console.error("Error getting current user", error);
       }
-    }
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx);
     }
 
     return { pageProps };

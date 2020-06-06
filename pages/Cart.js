@@ -68,11 +68,16 @@ function Cart({ user, products }) {
                       <img src={el.product.mediaUrl} />
                     </div>
                     <div className="info-con">
-                      <p className="name" key={"name" + i}>{el.product.name}</p>
+                      <p className="name" key={"name" + i}>
+                        {el.product.name}
+                      </p>
                       <p key={"price" + i}>{el.product.price}</p>
                       <p key={"quantity" + i}>{el.quantity}</p>
                       {user.role === "admin" && (
-                        <button className="bttn-second" onClick={() => deleteProduct(el.product._id)}>
+                        <button
+                          className="bttn-second"
+                          onClick={() => deleteProduct(el.product._id)}
+                        >
                           X
                         </button>
                       )}
@@ -95,7 +100,10 @@ function Cart({ user, products }) {
                 token={handleCheckout}
                 triggerEvent="onClick"
               >
-                <button className="bttn-second" disabled={Products.length === 0}>
+                <button
+                  className="bttn-second"
+                  disabled={Products.length === 0}
+                >
                   <p>Checkout</p>
                 </button>
               </StripeCheckout>
@@ -108,12 +116,14 @@ function Cart({ user, products }) {
 }
 
 Cart.getInitialProps = async (ctx) => {
-  // const { token } = parseCookies(ctx);
-  // const url = `${baseUrl}/api/cart`;
-  const res = await axios.get(url, { headers: { Authorization: token } });
-  console.log(res.data);
+  const { token } = parseCookies(ctx);
+  if (token) {
+    const url = `${baseUrl}/api/cart`;
+    const res = await axios.get(url, { headers: { Authorization: token } });
+    console.log(res.data);
 
-  return { products: res.data };
+    return { products: res.data };
+  }
 };
 
 export default Cart;
