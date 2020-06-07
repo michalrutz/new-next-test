@@ -6,9 +6,25 @@ $color-primary-dark: #b0caa1;
 $color-secondary: #fdcb9e;
 
 .cart-page {
-  padding-top: 5rem;
   margin: auto;
-  max-width: 120rem;
+  min-height: 100vh;
+  margin: auto;
+  // max-width: 120rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  // margin: auto;
+  // min-height: 100vh;
+  // margin: auto;
+  // // max-width: 120rem;
+  // display: flex;
+  // justify-content: center;
+  // align-items: flex-start;
+  // flex-direction: row;
+  // flex-wrap: nowrap;
 
   .shopingcart {
     display: flex;
@@ -123,6 +139,76 @@ $color-secondary: #fdcb9e;
       background-color: $color-primary;
       transform: translateY(-0.1rem);
       box-shadow: 0px 2px 3px $color-primary;
+    }
+  }
+}
+
+@media screen and (max-width: 415px) {
+  .cart-page {
+    width: auto;
+    margin: auto;
+
+    .shopingcart {
+      background-color: red($color: #000000);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      max-width: 0;
+      width: auto;
+
+      .header {
+        width: 50vw;
+        margin-bottom: 2rem;
+        padding-top: 2rem;
+        display: flex;
+        justify-content: center;
+        h2 {
+          width: auto;
+        }
+      }
+
+      .withCheckout {
+        background-color: rgba(255, 255, 255, 0.5);
+        margin: 0;
+        padding: 0;
+
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        position: relative;
+
+        max-width: 0;
+        width: auto;
+
+        .shopingcart-product {
+          width: 100vw;
+          margin: auto;
+          margin-bottom: 1rem;
+
+          .image-con {
+            display: flex;
+            width: 45vw;
+            padding: 0;
+            img {
+              width: 100%;
+              height: 100%;
+              flex-shrink: 1;
+            }
+          }
+          .info-con {
+            min-width: 0;
+            width: auto;
+            margin: 1rem 2rem 1rem 1rem;
+            word-break: break-all;
+            .name {
+              font-weight: 600;
+              font-size: 2rem;
+            }
+          }
+        }
+      }
     }
   }
 }

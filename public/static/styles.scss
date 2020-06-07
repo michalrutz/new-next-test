@@ -45,6 +45,10 @@ body {
   margin: 0 1%;
 }
 
+#core{
+  padding-top: 6rem;
+}
+
 a {
   list-style: none;
   text-decoration: none;
@@ -97,7 +101,6 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 1rem;
 }
 
 .display_filter button {
@@ -180,5 +183,6 @@ input:focus {
 @media screen and (max-width: 568px) {
   body {
     font-size: 1.6rem;
+    margin: 0;
   }
 }

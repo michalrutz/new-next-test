@@ -74,7 +74,7 @@ export default function Menu(props) {
         <MenuLinkLogged link="" title="home" logged={true} />
         <MenuLinkLogged link="Cart" logged={logged} />
         <Logout logged={logged} />
-        <MenuLinkLogged link="login" logged={!logged} />
+        <MenuLinkLogged link="Login" logged={!logged} />
         <MenuLinkLogged link="Signup" logged={!logged} />
 
         {props.user && props.user.role === "admin" && (

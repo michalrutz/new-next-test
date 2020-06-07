@@ -56,6 +56,7 @@ function Product(props) {
     <>
       <div className="product-page">
         <div className="product">
+        
           <div className="product-image">
             <img src={mediaUrl} />
           </div>
@@ -77,8 +78,8 @@ function Product(props) {
                 </form>
 
                 <button className="bttn-second" onClick={addToCart}>
-                    add to cart
-                  </button>
+                  add to cart
+                </button>
               </>
             )}
             {!props.user && (
@@ -89,7 +90,12 @@ function Product(props) {
               </>
             )}
             <p>
-              description:{description} There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
+              description:{description} There are many variations of passages of
+              Lorem Ipsum available, but the majority have suffered alteration
+              in some form, by injected humour, or randomised words which don't
+              look even slightly believable. If you are going to use a passage
+              of Lorem Ipsum, you need to be sure there isn't anything
+              embarrassing hidden in the middle of text.
             </p>
 
             {props.user && props.user.role === "admin" && (
