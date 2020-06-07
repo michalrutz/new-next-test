@@ -5,6 +5,40 @@ $color-primary: #cceabb;
 $color-primary-dark: #b0caa1;
 $color-secondary: #fdcb9e;
 
+#error {
+  position: absolute;
+  top:20vh;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: red;
+
+  margin-top: 1rem;
+  padding: 0.9rem 1.6rem 1rem 1.6rem;
+
+  font-family: "Varela Round", sans-serif;
+  text-transform: uppercase;
+  color: black;
+  border: 0.2rem solid red;
+  border-radius: 0.8rem;
+  z-index: 15;
+}
+
+#loading {
+  position: absolute;
+  top:15rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: $color-primary-dark;
+  text-transform: uppercase;
+
+  margin-top: 1rem;
+  padding: 0.9rem 1.6rem 1rem 1.6rem;
+
+  font-family: "Varela Round", sans-serif;
+  font-weight: 700;
+  border: 0.2rem solid $color-primary-dark;
+  border-radius: 0.8rem;
+  z-index: 15;
+}
+
 .form_container {
   height: 60vh;
   max-width: 60vh;

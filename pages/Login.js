@@ -27,6 +27,7 @@ function Login() {
   function handleChange(event) {
     const { name, value } = event.target;
     setUser((prevState) => ({ ...prevState, [name]: value }));
+    setError("");
   }
 
   async function handleSubmit(event) {
@@ -41,8 +42,8 @@ function Login() {
         throw AppError("email is required");
       }
       if (!user.password) {
-        setError("email is password");
-        throw AppError("email is password");
+        setError("password is required");
+        throw AppError("password is required");
       }
 
       const url = `${baseUrl}/api/login`;
@@ -69,9 +70,10 @@ function Login() {
 
   return (
     <>
-      {loading ? "loading" : ""}
-      {error}
       <div className="form_container">
+        {loading && <div id="loading">loading</div>}
+        {error && <div id="error">{error}</div>}
+
         <form className="form">
           <h1>Login</h1>
           <input

@@ -60,9 +60,9 @@ function Signup() {
 
   return (
     <>
-      {loading ? "loading" : ""}
-      {error}
       <div className="form_container">
+        {error && <div id="error">{error}</div>}
+        {loading && <div id="loading">loading</div>}
         <form className="form">
           <h1>Sign Up</h1>
           <input
