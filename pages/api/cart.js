@@ -76,6 +76,7 @@ handler
   .delete(async (req, res) => {
     try {
       const cart = await Cart.findOne({ user: req.userId });
+      console.log(cart);
       const cartUpdated = await Cart.findOneAndUpdate(
         { _id: cart._id },
         { $pull: { products: { product: req.query._id } } },
@@ -84,6 +85,8 @@ handler
         path: "products.product",
         model: "Product",
       });
+      console.log(chalk.red(cartUpdated));
+
       res.status(200).json({ cart: cartUpdated });
     } catch (error) {
       errorHandler(res, error);

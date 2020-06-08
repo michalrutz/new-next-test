@@ -35,6 +35,7 @@ function Cart({ user, products }) {
       console.log(data.errorMsg);
     }
   };
+
   async function handleCheckout(paymentData) {
     try {
       setLoading(true);
@@ -64,7 +65,12 @@ function Cart({ user, products }) {
       <div className="cart-page">
         <div className="shopingcart">
           <div className="header">
-            <h2>Shoping Cart</h2>
+            <h2>
+              {" "}
+              {Products.length === 0
+                ? "your shoping cart is empty"
+                : "Shoping Cart"}{" "}
+            </h2>
           </div>
 
           <div className="withCheckout">
@@ -81,9 +87,15 @@ function Cart({ user, products }) {
                       </p>
                       <p key={"price" + i}>{el.product.price}</p>
                       <p key={"quantity" + i}>{el.quantity}</p>
+                      <button
+                        className="bttn-mini"
+                        onClick={ () => deleteProduct(el.product._id) }
+                      >
+                        <p className="x">x</p>
+                      </button>
                       {user.role === "admin" && (
                         <button
-                          className="bttn-second"
+                          className="bttn-third"
                           onClick={() => deleteProduct(el.product._id)}
                         >
                           X
@@ -94,30 +106,34 @@ function Cart({ user, products }) {
                 );
               })}
             </div>
-            <div id="StripeCheckout">
-              <StripeCheckout
-                name="React Reserve"
-                amount={stripeAmount}
-                image={Products.length > 0 ? Products[0].product.mediaUrl : ""}
-                currency="EUR"
-                shippingAddress={true}
-                billingAddress={true}
-                zipCode={true}
-                stripeKey="pk_test_6GCyEv03yWinorBzeSbSOQdd00QbRDOSFR"
-                token={handleCheckout}
-                triggerEvent="onClick"
-              >
-                <button
-                  className="bttn-second"
-                  disabled={Products.length === 0}
+            {Products.length !== 0 && (
+              <div id="StripeCheckout">
+                <StripeCheckout
+                  name="React Reserve"
+                  amount={stripeAmount}
+                  image={
+                    Products.length > 0 ? Products[0].product.mediaUrl : ""
+                  }
+                  currency="EUR"
+                  shippingAddress={true}
+                  billingAddress={true}
+                  zipCode={true}
+                  stripeKey="pk_test_6GCyEv03yWinorBzeSbSOQdd00QbRDOSFR"
+                  token={handleCheckout}
+                  triggerEvent="onClick"
                 >
-                  <p>Checkout</p>
-                </button>
-              </StripeCheckout>
-              <div id="sum">
-                <p>{getSum(Products)}€</p>
+                  <button
+                    className="bttn-second"
+                    disabled={Products.length === 0}
+                  >
+                    <p>Checkout</p>
+                  </button>
+                </StripeCheckout>
+                <div id="sum">
+                  <p>{getSum(Products)}€</p>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
