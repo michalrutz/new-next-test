@@ -89,18 +89,10 @@ function Cart({ user, products }) {
                       <p key={"quantity" + i}>{el.quantity}</p>
                       <button
                         className="bttn-mini"
-                        onClick={ () => deleteProduct(el.product._id) }
+                        onClick={() => deleteProduct(el.product._id)}
                       >
                         <p className="x">x</p>
                       </button>
-                      {user.role === "admin" && (
-                        <button
-                          className="bttn-third"
-                          onClick={() => deleteProduct(el.product._id)}
-                        >
-                          X
-                        </button>
-                      )}
                     </div>
                   </div>
                 );
