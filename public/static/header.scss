@@ -69,18 +69,19 @@ header {
     display: block;
     position: absolute;
     bottom: -0%;
-    left: 10%;
-    height: 0.1rem;
-    width: 80%;
+    left: 50%;
+    height: 0rem;
+    width: 0%;
     background: transparent;
     transition: all 0.5s ease;
   }
   .underline:hover:after {
-    width: 90%;
+    height: 0.1rem;
+    width: 100%;
     bottom: 15%;
-    left: 5%;
+    left: 0%;
     background: rgba(0, 0, 0, 0.9);
-    box-shadow: 0 0.1rem 0.1rem black;
+    // box-shadow: 0 0.1rem 0.1rem rgba(black, 0.5);
   }
   .underline:disabled:hover:after {
     width: 100%;
