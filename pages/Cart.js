@@ -1,6 +1,8 @@
 import "../public/static/shopingcart.scss";
 import { parseCookies } from "nookies";
 import Router from "next/router";
+import Link from "next/link";
+
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 import cookie from "js-cookie";
@@ -66,39 +68,40 @@ function Cart({ user, products }) {
         <div className="shopingcart">
           <div className="header">
             <h2>
-              {" "}
               {Products.length === 0
                 ? "your shoping cart is empty"
-                : "Shoping Cart"}{" "}
+                : "Shoping Cart"}
             </h2>
           </div>
+          {Products.length !== 0 && (
+            <div className="withCheckout">
+              <div className="shopingcart-list">
+                {Products.map((el, i) => {
+                  return (
+                    <div key={"div" + i} className="shopingcart-product">
+                          <Link href={`/Product?_id=${el.product._id}`}>
+                        <div className="image-con">
+                          <img src={el.product.mediaUrl} />
+                        </div>
+                      </Link>
+                      <div className="info-con">
+                        <p className="name" key={"name" + i}>
+                          {el.product.name}
+                        </p>
+                        <p key={"price" + i}>{el.product.price}</p>
+                        <p key={"quantity" + i}>{el.quantity}</p>
+                        <button
+                          className="bttn-mini"
+                          onClick={() => deleteProduct(el.product._id)}
+                        >
+                          <p className="x">x</p>
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
 
-          <div className="withCheckout">
-            <div className="shopingcart-list">
-              {Products.map((el, i) => {
-                return (
-                  <div key={"div" + i} className="shopingcart-product">
-                    <div className="image-con">
-                      <img src={el.product.mediaUrl} />
-                    </div>
-                    <div className="info-con">
-                      <p className="name" key={"name" + i}>
-                        {el.product.name}
-                      </p>
-                      <p key={"price" + i}>{el.product.price}</p>
-                      <p key={"quantity" + i}>{el.quantity}</p>
-                      <button
-                        className="bttn-mini"
-                        onClick={() => deleteProduct(el.product._id)}
-                      >
-                        <p className="x">x</p>
-                      </button>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-            {Products.length !== 0 && (
               <div id="StripeCheckout">
                 <StripeCheckout
                   name="React Reserve"
@@ -125,8 +128,8 @@ function Cart({ user, products }) {
                   <p>{getSum(Products)}€</p>
                 </div>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </>

@@ -9,6 +9,8 @@ import baseUrl from "../u/baseUrl";
 function Product(props) {
   console.log("PRODUCT PROPS", props);
   const [loading, setLoading] = React.useState(false);
+  const [adding, setAdding] = React.useState("Add to Cart");
+
   const { name, price, description, mediaUrl, _id } = props.product;
   const [chosenProduct, setchosenProduct] = React.useState({
     quantity: 1,
@@ -32,6 +34,7 @@ function Product(props) {
   const addToCart = async (event) => {
     event.preventDefault();
     setLoading(true);
+    // setAdding("adding to Cart")
     const quantity = document.getElementById("quantity").value;
     console.log("quantity " + quantity);
     // product ID
@@ -47,6 +50,10 @@ function Product(props) {
     // console.log(res.json())
     const data = await res.json();
     console.log(data);
+    setAdding("added to Cart");
+    setTimeout(() => {
+      setAdding("add to Cart");
+    }, 2000);
     setLoading(false);
 
     // router.push("/");
@@ -56,7 +63,6 @@ function Product(props) {
     <>
       <div className="product-page">
         <div className="product">
-        
           <div className="product-image">
             <img src={mediaUrl} />
           </div>
@@ -78,7 +84,7 @@ function Product(props) {
                 </form>
 
                 <button className="bttn-second" onClick={addToCart}>
-                  add to cart
+                  {adding}
                 </button>
               </>
             )}
