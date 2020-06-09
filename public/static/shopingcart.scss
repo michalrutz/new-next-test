@@ -130,33 +130,6 @@ $color-secondary: #fdcb9e;
     justify-content: center;
     margin-top: 1rem;
   }
-
-  .bttn-second {
-    margin-top: 1.5rem;
-    padding: 0.9rem 1.6rem 1rem 1.6rem;
-    font-family: "Varela Round", sans-serif;
-    color: $color-black;
-    border: 0.1rem solid $color-black;
-    border-radius: 1rem;
-    background-color: transparent;
-    transition: all 0.5s ease;
-
-    &:hover {
-      color: $color-black;
-      background-color: $color-primary;
-      border: 0.1rem solid $color-primary-dark;
-
-      transform: translateY(-0.4rem);
-      box-shadow: 0px 3px 5px $color-primary;
-    }
-    &:active {
-      border-radius: 0.6rem;
-      color: rgba(0, 0, 0, 0.4);
-      background-color: $color-primary;
-      transform: translateY(-0.1rem);
-      box-shadow: 0px 2px 3px $color-primary;
-    }
-  }
 }
 
 @media screen and (max-width: 415px) {

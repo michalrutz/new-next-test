@@ -1,4 +1,6 @@
 import "../public/static/shopingcart.scss";
+import "../public/static/bttn-second.scss";
+
 import { parseCookies } from "nookies";
 import Router from "next/router";
 import Link from "next/link";

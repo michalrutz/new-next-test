@@ -7,6 +7,7 @@ import cookie from "js-cookie";
 import Router from "next/router";
 
 import "../public/static/form.scss";
+import "../public/static/bttn-second.scss";
 
 const INITIAL_USER = {
   name: "",

@@ -1,6 +1,7 @@
 import React from "react";
 import Router from "next/router";
 import "../public/static/form.scss";
+import "../public/static/bttn-second.scss";
 
 import cookie from "js-cookie";
 import fetch from "node-fetch";

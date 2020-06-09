@@ -1,4 +1,5 @@
 import "../public/static/product.scss";
+import "../public/static/bttn-second.scss";
 const { useRouter } = require("next/router");
 import Link from "next/link";
 import fetch from "node-fetch";
