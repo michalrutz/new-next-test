@@ -2,7 +2,7 @@ $color-black: #0b1e21;
 $color-white: #f5f5ef;
 $color-white2: #f6f9f8;
 $color-primary: #cceabb;
-$color-primary-dark: #b0caa1;
+$color-primary-dark: #b6e09d;
 $color-secondary: #fdcb9e;
 
 #error {
@@ -71,16 +71,16 @@ $color-secondary: #fdcb9e;
       padding: 0.2rem 0.5rem;
       transition: all 0.5s ease;
       margin-bottom: 0.5rem;
-      border-bottom: 0.1rem solid transparent;
+      border-bottom: 0.2rem solid transparent;
 
       &:focus {
-        background-color: rgba($color-primary, 0.4);
-        border-bottom: 0.1rem solid black;
+        background-color: rgba(255, 255, 255, 1);
+        border-bottom: 0.2rem solid $color-secondary;
       }
       &:-webkit-autofill {
         border: none;
         -webkit-text-fill-color: rgba(0, 0, 0, 0.8);
-        -webkit-box-shadow: 0 0 0px 1000px rgba($color-primary, 0.1) inset;
+        -webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.9) inset;
       }
     }
 
@@ -98,25 +98,27 @@ $color-secondary: #fdcb9e;
 
       font-family: "Varela Round", sans-serif;
       color: $color-black;
-      border: 0.1rem solid $color-black;
-      border-radius: 1rem;
-      background-color: transparent;
+      border: 0.1rem solid transparent;
+      border-radius: 2rem;
+      background-color: white;
       // width: 8rem;
+      box-shadow: 0px 1px 3px rgba($color-black, 0.2);
+
       transition: all 0.5s ease;
 
       &:hover {
-        color: $color-black;
-        background-color: $color-primary;
-        border: 0.1rem solid $color-primary-dark;
+        color: white;
+        background-color: $color-primary-dark;
+        // border: 0.1rem solid $color-primary-dark;
 
         // border: $color-primary-dark;
         transform: translateY(-0.2rem);
-        box-shadow: 0px 3px 5px $color-primary;
+        box-shadow: 0px 3px 5px rgba($color-black, 0.2);
       }
       &:active {
-        border-radius: 0.6rem;
+        border-radius: 10rem;
         color: rgba(0, 0, 0, 0.4);
-        background-color: $color-primary;
+        background-color: $color-primary-dark;
         transform: translateY(-0.1rem);
         box-shadow: 0px 2px 3px $color-primary;
       }
