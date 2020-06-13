@@ -1,9 +1,4 @@
-$color-black: #0b1e21;
-$color-white: #f5f5ef;
-$color-white2: rgb(232, 246, 241);
-$color-primary: #cceabb;
-$color-primary-dark: #b0caa1;
-$color-secondary: #fdcb9e;
+@import "./abstract/var";
 
 //basic reset
 * {

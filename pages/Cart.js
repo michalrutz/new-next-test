@@ -1,5 +1,5 @@
-import "../public/static/shopingcart.scss";
-import "../public/static/bttn-second.scss";
+//SASS
+import "../public/static/_shopingcart.scss";
 
 import { parseCookies } from "nookies";
 import Router from "next/router";

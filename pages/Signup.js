@@ -6,8 +6,7 @@ import baseUrl from "../u/baseUrl";
 import cookie from "js-cookie";
 import Router from "next/router";
 
-import "../public/static/form.scss";
-import "../public/static/bttn-second.scss";
+import "../public/static/_form.scss";
 
 const INITIAL_USER = {
   name: "",

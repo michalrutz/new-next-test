@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import "../../public/static/c/_bttn-menu.scss";
 
 export default function MenuLinkLogged(props) {
   const { pathname } = useRouter();

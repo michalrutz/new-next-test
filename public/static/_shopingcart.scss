@@ -1,9 +1,5 @@
-$color-black: #0b1e21;
-$color-white: #f5f5ef;
-$color-white2: #f6f9f8;
-$color-primary: #cceabb;
-$color-primary-dark: #b0caa1;
-$color-secondary: #fdcb9e;
+@import "./abstract/var";
+@import "./c/bttn-secondary";
 
 .cart-page {
   margin: auto;
@@ -29,7 +25,7 @@ $color-secondary: #fdcb9e;
     left: 18.5rem;
     transition: all 0.5s ease;
 
-    &:hover{
+    &:hover {
       background-color: rgba($color-black, 0.8);
     }
   }

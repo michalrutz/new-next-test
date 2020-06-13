@@ -1,5 +1,5 @@
-import "../public/static/shop.scss";
-import "../public/static/cart.scss";
+import "../public/static/_shop.scss";
+import "../public/static/_cart.scss";
 
 import React, { useState, useEffect } from "react";
 import fetch from "node-fetch";

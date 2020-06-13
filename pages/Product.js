@@ -1,5 +1,4 @@
-import "../public/static/product.scss";
-import "../public/static/bttn-second.scss";
+import "../public/static/_product.scss";
 const { useRouter } = require("next/router");
 import Link from "next/link";
 import fetch from "node-fetch";
@@ -18,6 +17,7 @@ function Product(props) {
   });
 
   const router = useRouter();
+
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -125,6 +125,9 @@ Product.getInitialProps = async ({ query: { _id } }) => {
   });
   const data = await res.json();
   console.log(data);
+
+  
+
   return { product: data };
   // return response data as an object
   // note: this object will be merged with existing props

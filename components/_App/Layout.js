@@ -1,14 +1,7 @@
 import Head from "next/head";
 // import Header from "./Header";
 import Menu from "./Menu";
-import "../../public/static/styles.scss";
-
-// import NProgress from "nprogress";
-// import Router from "next/router";
-
-// Router.onRouteChangeStart = () => NProgress.start();
-// Router.onRouteChangeComplete = () => NProgress.done();
-// Router.onRouteChangeError = () => NProgress.done();
+import "../../public/static/_styles.scss";
 
 function Layout(props) {
   return (
@@ -30,7 +23,7 @@ function Layout(props) {
         <link
           rel="stylesheet"
           type="text/scss"
-          href="/static/styles.scss"
+          href="/static/_styles.scss"
           key="global"
         />
         <title>ReactReserve</title>
