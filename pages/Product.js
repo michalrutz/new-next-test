@@ -1,10 +1,13 @@
 import "../public/static/_product.scss";
+import "../public/static/c/_login.scss";
+
 const { useRouter } = require("next/router");
 import Link from "next/link";
 import fetch from "node-fetch";
 import cookie from "js-cookie";
 //my
 import baseUrl from "../u/baseUrl";
+import Login from "../pages/login";
 
 function Product(props) {
   console.log("PRODUCT PROPS", props);
@@ -17,7 +20,6 @@ function Product(props) {
   });
 
   const router = useRouter();
-
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -91,9 +93,7 @@ function Product(props) {
             )}
             {!props.user && (
               <>
-                <Link href={`/Login`}>
-                  <button className="bttn-second">login to buy</button>
-                </Link>
+                <button className="bttn-second" onClick={ () => { document.getElementById("log-con").style.display="block"}} >login to buy</button>
               </>
             )}
             <p>
@@ -113,6 +113,9 @@ function Product(props) {
             )}
           </div>
         </div>
+        <div id="log-con" style={{display:"none"}}>
+          <Login />
+        </div>
       </div>
     </>
   );
@@ -125,8 +128,6 @@ Product.getInitialProps = async ({ query: { _id } }) => {
   });
   const data = await res.json();
   console.log(data);
-
-  
 
   return { product: data };
   // return response data as an object

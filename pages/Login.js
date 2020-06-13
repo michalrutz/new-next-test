@@ -1,5 +1,6 @@
 import React from "react";
 import Router from "next/router";
+import Link from "next/link";
 import "../public/static/_form.scss";
 
 import cookie from "js-cookie";
@@ -58,7 +59,8 @@ function Login() {
           setError(data.errorMsg);
         } else {
           cookie.set("token", data.token);
-          Router.push("/");
+          // Router.push("/");
+          Router.reload(window.location.pathname);
         }
       }
     } catch (error) {
@@ -93,6 +95,11 @@ function Login() {
           <button className="bttn-second" id="submit" onClick={handleSubmit}>
             login
           </button>
+          <div className="note-con">
+            <Link href="/Signup">
+              <p>don't have an account? sign up now</p>
+            </Link>
+          </div>
         </form>
       </div>
     </>

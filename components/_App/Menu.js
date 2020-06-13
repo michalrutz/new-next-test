@@ -1,5 +1,5 @@
 import "../../public/static/_header.scss";
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import MenuLinkLogged from "./MenuLinkLogged";
 import Logout from "./Logout";
@@ -11,11 +11,13 @@ export default function Menu(props) {
     var menu = document.getElementById("menu-mobile");
     var check = document.getElementById("check");
 
-    window.onclick = function(event) {
+    window.onclick = function (event) {
+      console.log(event.target == menu);
+
       if (event.target == menu) {
         check.checked = false;
       }
-    }
+    };
   }, []);
 
   let logged;

@@ -72,6 +72,7 @@ function Home({ products }) {
             <ProduktPrev key={item._id} item={item} />
           ))}
         </div>
+        
       </div>
     </>
   );

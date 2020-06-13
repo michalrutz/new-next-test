@@ -1,0 +1,20 @@
+.pop-con {
+  position: relative;
+  max-width: 100%;
+
+}
+
+.pop {
+  margin: auto;
+  position: absolute;
+  width: 120rem;
+    left:0;
+//   max-width: 100%;
+  z-index: 50;
+
+  .product {
+    left: 0;
+    top: 0;
+    background-color: rgba(white, 0.95);
+  }
+}
